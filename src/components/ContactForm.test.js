@@ -1,21 +1,21 @@
 import React from 'react';
-import { render, getByText, fireEvent } from '@testing-library/react';
+import { render, getByText, fireEvent, getByPlaceholderText } from '@testing-library/react';
 import ContactForm from './ContactForm';
 import 'mutationobserver-shim';
 
-// test('contact form is rendered', () => {
-//     render(<ContactForm/>)
-// })
+test('contact form is rendered', () => {
+    render(<ContactForm/>)
+})
 
-// test('renders form inputs', () => {
-//     const { getByText } = render(<ContactForm/>)
-//     getByText(/first name/i)
-// })
+test('renders form inputs', () => {
+    const { getByText } = render(<ContactForm/>)
+    getByText(/first name/i)
+})
 
-// test('check label text', () => {
-//     const { getByLabelText } = render(<ContactForm/>);
-//     getByLabelText(/first name/i);
-// })
+test('check label text', () => {
+    const { getByLabelText } = render(<ContactForm/>);
+    getByLabelText(/first name/i);
+})
 
 test('form submit adds user', () => {
     const { getByLabelText } = render(<ContactForm/>);
@@ -34,4 +34,11 @@ test('form submit adds user', () => {
     expect(lNameInput.value).toBe('Last Test')
     expect(emailInput.value).toBe('test@email.com')
     expect(messageInput.value).toBe('Message Test')
+})
+
+test('are placeholders blank', () => {
+    const { getAllByPlaceholderText } = render(<ContactForm/>);
+
+    const pValue = getAllByPlaceholderText(/^\s*$/);
+
 })
